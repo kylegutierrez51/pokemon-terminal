@@ -16,72 +16,59 @@ public final class Controller {
     public static void main(String[] args) throws IntegerException, InterruptedException {
         Scanner scanner = new Scanner(System.in);
 
-        Thread gameIntro1 = new Thread(() -> {
-            System.out.println("\nWelcome to Pokemon Simulator,");
-            System.out.println("A small program where you can hunt, catch, and battle Pokemon!");
-            //println makes a new line on the next line
+        System.out.println("\nWelcome to Pokemon Simulator,");
+        System.out.println("A small program where you can hunt, catch, and battle Pokemon!");
 
-            //this "try" "catch" is required by the method "Thread.sleep()". Don't worry about it.
-            try {
-                Thread.sleep(1500);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            discardInput();
-        });
-        Thread gameIntro2 = new Thread(() -> {
-
-            System.out.println("\nChoose your Pokemon");
-            //Party.setParty();
-            //sets first 6 elements of party arraylist to null.
-            ChooseYourStarter(Party.party);
-            UI.pokemonNickname(Party.party);
-        });
-        Thread gameIntro3 = new Thread(() -> {
-            System.out.println();
-            System.out.println("Hmmmm... what should you do now?");
-            try {
-                Thread.sleep(1500);
-            } catch (InterruptedException e) {
-                System.out.println(e.getMessage());
-            }
-            discardInput();
-        });
+        try {
+            Thread.sleep(1500);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        discardInput();
 
 
+        System.out.println("\nChoose your Pokemon");
+        //Party.setParty();
+        //sets first 6 elements of party arraylist to null. [unused function]
 
-        gameIntro1.start();
+        ChooseYourStarter(Party.party);
+        UI.pokemonNickname(Party.party);
 
-        gameIntro1.join(); //<- pauses main thread (method) so it doesn't go ahead
-        gameIntro2.start();
-        gameIntro2.join();
-        gameIntro3.start();
-        gameIntro3.join();
+        System.out.println();
+        System.out.println("Hmmmm... what should you do now?");
+        try {
+            Thread.sleep(1500);
+        } catch (InterruptedException e) {
+            System.out.println(e.getMessage());
+        }
+
         Box.addInitialBoxes();
         Bag.initializeBag();
-        boolean gameMechanic = true;
         String gameOptions;
-            while(gameMechanic){
-                try {
-                    System.out.println("1. Check Party");
-                    System.out.println("2. Check Bag");
-                    System.out.println("3. Check Box");
-                    System.out.println("4. HUNT!");
-                    System.out.println("Enter 1-4");
-                    //System.out.println("type Q to save.");
-                    gameOptions = scanner.next();
-                    switch (gameOptions) {
-                        case "1" -> Party.viewParty(Party.party);
-                        case "2" -> Bag.viewBag();
-                        case "3" -> Box.viewBoxes();
-                        case "4" -> Places.placeList();
-                        default -> System.out.println("CHOOSE ONE. THIS IS A SIMULATOR.");
-                    }
-                }catch(Exception e) {
-                    System.out.println(e);
+        while(true){
+            try {
+                discardInput();
+                System.out.println("1. Check Party");
+                System.out.println("2. Check Bag");
+                System.out.println("3. Check Box");
+                System.out.println("4. HUNT!");
+                System.out.println("5. Quit");
+                System.out.println("Enter 1-4");
+                //System.out.println("type Q to save.");
+                gameOptions = scanner.next();
+                switch (gameOptions) {
+                    case "1" -> Party.viewParty(Party.party);
+                    case "2" -> Bag.viewBag();
+                    case "3" -> Box.viewBoxes();
+                    case "4" -> Places.placeList();
+                    case "5" -> System.exit(0);
+                    default -> System.out.println("Choose 1-5.");
                 }
+            }catch(Exception e) {
+                System.out.println(e);
             }
         }
+    }
 
     public static void ChooseYourStarter(ArrayList<Pokemon> party) {
         Scanner scanner = new Scanner(System.in);

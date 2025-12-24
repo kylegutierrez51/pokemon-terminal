@@ -1,3 +1,5 @@
+/* UNFINISHED BATTLE SYSTEM */
+
 package BattleSystem;
 import Moves.Move;
 import Places.Places;
@@ -6,6 +8,8 @@ import StatusConditions.Fainted;
 import StatusConditions.StatusCondition;
 
 import java.util.Scanner;
+
+
 
 public class Battle {
     Scanner scanner = new Scanner(System.in);

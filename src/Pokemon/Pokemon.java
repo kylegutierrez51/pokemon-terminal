@@ -28,12 +28,18 @@ public abstract class Pokemon {
     private int[] evYield = new int[3];
     private Move[] moves = new Move[4];
     private ArrayList<Move> movesLearned = new ArrayList<>();
-    private final double[] stageMultipliers = {(double) 2/8, (double) 2 /7, (double) 2/6, (double) 2/5,
-                                        (double) 2/4, (double) 2/3, (double) 2/2, (double) 3/2,
-                                        (double) 4/2, (double) 5/2, (double) 6/2, (double) 7/2, (double) 8/2}; // -6 -> 0 -> 6
-    private final double[] accuracyMultipliers = {(double) 3/9, (double) 3/8, (double) 3/7, (double) 3/6,
+    private final double[] stageMultipliers = {
+            (double) 2/8, (double) 2 /7, (double) 2/6, (double) 2/5,
+            (double) 2/4, (double) 2/3, (double) 2/2, (double) 3/2,
+            (double) 4/2, (double) 5/2, (double) 6/2, (double) 7/2, (double) 8/2
+            }; // -6 -> 0 -> 6
+
+    private final double[] accuracyMultipliers = {
+            (double) 3/9, (double) 3/8, (double) 3/7, (double) 3/6,
             (double) 3/5, (double) 3/4, (double) 3/3, (double) 4/3,
-            (double) 5/3, (double) 6/3, (double) 7/3, (double) 8/3, (double) 9/3}; // -6 -> 0 -> 6
+            (double) 5/3, (double) 6/3, (double) 7/3, (double) 8/3, (double) 9/3
+            }; // -6 -> 0 -> 6
+
     private int attackModifier = 6, defenseMultiplier = 6, spAttackMultiplier = 6, spDefMultiplier = 6, speedMultiplier = 6;
     private int accuracyMultiplier = 6;
     //set them to 6 to represent stageMultipliers[6] and accuracyMultipliers[6], which is the default modifier
